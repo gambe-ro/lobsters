@@ -1,7 +1,8 @@
 import os
 import sys
-from datetime import datetime
 from ruamel.yaml import YAML
+from datetime import datetime
+from operator import itemgetter
 
 
 BUFFER_INDEX_PATH = '.\\db_backup_buffer_index.txt'
@@ -14,13 +15,17 @@ def main():
 
     # Get Info
     buffer_index = get_or_create_buffer_index(config['num_backup_stored'])
+    backup_folder = config['local_folder']
+    max_index = config['num_backup_stored']
     now = datetime.now()
 
-    # Backup
+    # Backup info
     backup_filename = 'DatabaseBackup_%02d_%04d-%02d-%02d_%02d-%02d-%02d.sql' % (buffer_index, now.year, now.month, now.day, now.hour, now.minute, now.second)
-    backup_path = os.path.join(config['local_folder'], backup_filename)
+    backup_path = os.path.join(backup_folder, backup_filename)
+
+    reorder_backup(backup_folder, max_index)
     backup(backup_path)
-    delete_old_backup_local(config['local_folder'], buffer_index, config['num_backup_stored'], [backup_filename, ])
+    delete_old_backup_local(backup_folder, buffer_index, max_index, [backup_filename, ])
 
 
 def get_input_parameter(parameter):
@@ -28,7 +33,7 @@ def get_input_parameter(parameter):
         index = sys.argv.index(parameter) + 1
         if len(sys.argv) > index:
             return sys.argv[index]
-    raise ValueError('Parametro %s non presente' % parameter)
+    raise ValueError('Parameter %s not present' % parameter)
 
 
 def get_config_from_file(file):
@@ -57,20 +62,61 @@ def backup(file):
         f.write('test')
 
 
+def get_backup_in_folder(backup_folder):
+    all_file = os.listdir(backup_folder)
+    backup_file = []
+    for f in all_file:
+        f_splits = f.split('_')
+        f_app = f_splits[0]
+        if f_app == 'DatabaseBackup':
+            backup_file.append(f)
+    return backup_file
+
+
+def delete_files(folder, files):
+    for f in files:
+        path = os.path.join(folder, f)
+        os.remove(path)
+
+
 def delete_old_backup_local(backup_folder, current_index, max_index, exclude):
-    all_backup = os.listdir(backup_folder)
+    all_backup = get_backup_in_folder(backup_folder)
     backup_to_delete = []
     for f in all_backup:
         f_splits = f.split('_')
-        f_app = f_splits[0]
+        f_index = int(f_splits[1])
         if f not in exclude:
-            if f_app == 'DatabaseBackup':
-                f_index = int(f_splits[1])
-                if f_index == current_index or f_index >= max_index:
-                    backup_to_delete.append(f)
-    for f in backup_to_delete:
-        path = os.path.join(backup_folder, f)
-        os.remove(path)
+            if f_index == current_index:
+                backup_to_delete.append(f)
+    delete_files(backup_folder, backup_to_delete)
+
+
+# This function provide reorder in case of buffer size change
+def reorder_backup(backup_folder, max_index):
+    all_backup = get_backup_in_folder(backup_folder)
+    backup_split = [b.split('_') for b in all_backup]
+    if len(all_backup) > max_index:
+        # Divide older backup from newer backup
+        backup_sort_split = sorted(backup_split, key=itemgetter(2, 3))
+        backup_to_rename_split = backup_sort_split[-max_index:]
+        backup_to_delete_split = backup_sort_split[:-max_index]
+
+        # Delete old backup
+        backup_to_delete = ['_'.join(b) for b in backup_to_delete_split]
+        delete_files(backup_folder, backup_to_delete)
+
+        # Rename newer backup
+        new_index = 0
+        for b in backup_to_rename_split:
+            old_path = os.path.join(backup_folder, '_'.join(b))
+            b[1] = '%02d' % new_index
+            new_path = os.path.join(backup_folder, '_'.join(b))
+            os.rename(old_path, new_path)
+            new_index += 1
+
+        # Reset index
+        with open(BUFFER_INDEX_PATH, "w+") as f:
+            f.write(str(max_index-1))  # Next index is 0
 
 
 if __name__ == "__main__":
