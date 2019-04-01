@@ -4,8 +4,8 @@ from ruamel.yaml import YAML
 from datetime import datetime
 from operator import itemgetter
 
-
-BUFFER_INDEX_PATH = '.\\db_backup_buffer_index.txt'
+SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
+BUFFER_INDEX_PATH = os.path.join(SCRIPT_PATH, 'db_backup_buffer_index.txt')
 
 
 def main():
@@ -64,12 +64,7 @@ def backup(file):
 
 def get_backup_in_folder(backup_folder):
     all_file = os.listdir(backup_folder)
-    backup_file = []
-    for f in all_file:
-        f_splits = f.split('_')
-        f_app = f_splits[0]
-        if f_app == 'DatabaseBackup':
-            backup_file.append(f)
+    backup_file = [f for f in all_file if f.startswith('DatabaseBackup_')]
     return backup_file
 
 

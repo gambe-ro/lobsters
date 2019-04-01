@@ -1,8 +1,9 @@
 #db_backup Script Config
 
 #db
-db_user: user
-db_password: pass
+db:
+  user: user
+  password: pass
 
 #backup
 num_backup_stored: 5
@@ -14,9 +15,9 @@ local_folder: .\backup  # Without final slash
 #ftp
 ftp_enable: false
 ftp_servers: []
-# - ftp_address: first address
-#   ftp_user:
-#   ftp_password:
-# - ftp_address: second address
-#   ftp_user:
-#   ftp_password:
+# - address: first address
+#   user:
+#   password:
+# - address: second address
+#   user:
+#   password:
