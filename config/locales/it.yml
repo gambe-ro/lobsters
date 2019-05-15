@@ -444,6 +444,7 @@ it:
       abouttitle: "Su di me:"
       markdownavailable: "Formattazione Markdown disponibile"
       signup: "Iscriviti"
+      sent: "Inviato"
     invite:
       passinvitation: "Condividi un invito a tua volta"
       passinvitationbody: "Questa comunità potrà crescere solo se i suoi membri inviteranno nuovi utenti, come è stato fatto con te. Se credi di conoscere qualcuno che potrebbe contribuire in modo costruttivo, non esitare a condividere la piattaforma con questa persona."
