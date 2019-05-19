@@ -21,7 +21,7 @@ it:
         body: 'Verifica i campi sottostanti: '
         header:
           one: 'Impossibile registrare questo/a %{model}: 1 errore'
-          other: 'Impossibile registrare questo/a %{model}: %{count} errori' 
+          other: 'Impossibile registrare questo/a %{model}: %{count} errori'
       models:
         user:
           attributes:
@@ -34,6 +34,10 @@ it:
               confirmation: "Le due password non corrispondono"
             username:
               invalid: "Il nome utente non è valido"
+          story:
+            attributes:
+              title:
+                too_short: "Il titolo è troppo corto"
   hats:
     index:
       hatstitle: "Cappelli"
@@ -364,7 +368,7 @@ it:
       requirepushover: "Richiedi un'iscrizione Pushover qua sopra"
       commentmentionnotificationsettings: "Impostazioni di notifica delle menzioni sui commenti"
       privatemessagenotificationsettings: "Impostazioni di notifica dei messaggi privati" 
-      submittedstorycommentsettings: "Imposazioni"
+      submittedstorycommentsettings: "Impostazioni di notifica dei commenti ad un tuo articolo"
       showyourthreads: "Mostra i tuoi <a href=\"/threads\">threads</a>:"
       mailinglistsettings: "Impostazioni della mailing list"
       mailinglisttext: "Se attivato, riceverai tutti gli ultimi articoli pubblicati ed i commenti agli indirizzi e-mail indicati, eccetto le storie e i commenti filtrati a partire dai <a href=\"/filters\">filtri di tag</a>. Tutte le mail saranno inviate agli indirizzi e-mail della lista, e con le opzioni a seguire potrai filtrare quali e-mail ricevere. Le e-mail che invierai con questi indirizzi saranno postate con il tuo accoun sul sito web. Stai attento a chi accede al tuo account per evitare che qualcuno commenti al posto tuo."
@@ -498,7 +502,7 @@ it:
       undelete: "ripristina"
       confirmdelete: "Sei sicuro di voler rimuovere questo articolo?"
       suggest: "suggerisci"
-      unflag: "ritrai la segnalazione"
+      unflag: "annulla segnalazione"
       flag: "segnala"
       hide: "nascondi"
       unhide: "mostra"
