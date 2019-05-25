@@ -26,7 +26,7 @@ gem "rqrcode"
 
 gem "nokogiri", "= 1.6.8"
 gem "htmlentities"
-gem "commonmarker", "~> 0.14"
+gem "commonmarker", "~> 0.17.9"
 
 gem "activerecord-typedstore"
 
