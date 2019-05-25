@@ -92,7 +92,10 @@ module ApplicationHelper
       years = (secs / 60.0 / 60.0 / 24.0 / 365.0).floor
       ago = "#{years} year#{years == 1 ? "" : "s"} ago"
     end
-
+    
+        if options[:mark_unread]
+                  span_class += 'comment_unread'
+                      end
     raw(content_tag(:span, ago, :title => time.strftime("%F %T %z")))
   end
 end

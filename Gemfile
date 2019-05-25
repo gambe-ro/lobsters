@@ -4,7 +4,7 @@ gem "rails", "4.2.8"
 
 gem "unicorn"
 
-gem "mysql2", ">= 0.4.10"
+gem "mysql2", ">= 0.4.10", "<0.5"
 
 # uncomment to use PostgreSQL
 # gem "pg"
@@ -35,7 +35,7 @@ gem "oauth"
 
 # for parsing incoming mail
 gem "mail"
-gem 'scenic'
+gem 'scenic', "1.4.0"
 gem 'scenic-mysql'
 
 group :test, :development do

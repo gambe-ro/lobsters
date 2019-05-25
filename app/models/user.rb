@@ -471,4 +471,7 @@ class User < ActiveRecord::Base
         "stories.user_id <> votes.user_id").
       order("id DESC")
   end
+   def unread_replies_count
+           ReplyingComment.where(user_id: self.id, is_unread: true).count
+             end
 end
