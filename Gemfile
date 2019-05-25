@@ -35,6 +35,8 @@ gem "oauth"
 
 # for parsing incoming mail
 gem "mail"
+gem 'scenic'
+gem 'scenic-mysql'
 
 group :test, :development do
   gem "rspec-rails", "~> 3.5", ">= 3.5.2"
