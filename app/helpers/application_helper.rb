@@ -33,6 +33,83 @@ module ApplicationHelper
     raw(html)
   end
 
+  def header_links
+    return @header_links if @header_links
+
+    @header_links = {
+      "/" => { :title => @cur_url == "/" ? Rails.application.name : t('.homelink') },
+      "/recent" => { :title => t('.recentlink') },
+      "/comments" => { :title => t('.commentslink') },
+    }
+
+    if @user
+      @header_links.merge!({ "/threads" => { :title => t('.yourthreadslink') } })
+    end
+
+    if @user && @user.can_submit_stories?
+      @header_links.merge!({
+        "/stories/new" => { :title => t('.submitstorylink') }
+      })
+    end
+
+    @header_links.merge!({ "/search" => { :title => t('.searchlink') } })
+
+    @header_links.merge!({ "/about#betatest" => { :title => t('.beta-test'), :class => ['highlighted'] } })
+
+    if !@user
+      @header_links.merge!({ "/invitations/request" => { :title => t('.invitationlink'), :class => ['highlighted'] } })
+    end
+
+    @header_links.each do |k,v|
+      v[:class] ||= []
+
+      if k == @cur_url
+        v[:class].push "cur_url"
+      end
+    end
+
+    @header_links
+  end
+
+  def right_header_links
+    return @right_header_links if @right_header_links
+
+    @right_header_links = {
+      "/filters" => { :title => t('.filterslink') },
+    }
+
+    if @user
+      if (count = @user.unread_message_count) > 0
+        @right_header_links.merge!({ "/messages" => {
+          :class => [ "new_messages" ],
+          :title => t(".newmessagelink", :count => count),
+        } })
+      else
+        @right_header_links.merge!({
+          "/messages" => { :title => t('.messageslink') }
+        })
+      end
+
+      @right_header_links.merge!({
+        "/settings" => { :title => "#{@user.username} (#{@user.karma})" }
+      })
+    else
+      @right_header_links.merge!({
+        "/login" => { :title => t('.loginlink') }
+      })
+    end
+
+    @right_header_links.each do |k,v|
+      v[:class] ||= []
+
+      if k == @cur_url
+        v[:class].push "cur_url"
+      end
+    end
+
+    @right_header_links
+  end
+
   def page_numbers_for_pagination(max, cur)
     if max <= MAX_PAGES
       return (1 .. max).to_a
