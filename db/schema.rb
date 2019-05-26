@@ -128,20 +128,6 @@ ActiveRecord::Schema.define(version: 20180130235553) do
   add_index "read_ribbons", ["story_id"], name: "index_read_ribbons_on_story_id", using: :btree
   add_index "read_ribbons", ["user_id"], name: "index_read_ribbons_on_user_id", using: :btree
 
-  create_table "replying_comments", id: false, force: :cascade do |t|
-    t.integer  "user_id",                  limit: 4
-    t.integer  "comment_id",               limit: 4, default: 0, null: false
-    t.integer  "story_id",                 limit: 4
-    t.integer  "parent_comment_id",        limit: 4
-    t.datetime "comment_created_at",                             null: false
-    t.integer  "parent_comment_author_id", limit: 4
-    t.integer  "comment_author_id",        limit: 4,             null: false
-    t.integer  "story_author_id",          limit: 4
-    t.integer  "is_unread",                limit: 4
-    t.integer  "current_vote_vote",        limit: 1
-    t.string   "current_vote_reason",      limit: 1
-  end
-
   create_table "stories", force: :cascade do |t|
     t.datetime "created_at"
     t.integer  "user_id",                limit: 4

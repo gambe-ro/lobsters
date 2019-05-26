@@ -56,8 +56,8 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
         <% if defined?(is_unread) && is_unread %>
                 <% mark_unread = true %>
          <% end %>
-        <%= distance_of_time_in_words((comment.has_been_edited? ?
-          comment.updated_at : comment.created_at), Time.now, :strip_about => true, mark_unread: mark_unread) %>
+        <%= time_ago_in_words_label((comment.has_been_edited? ?
+          comment.updated_at : comment.created_at), :strip_about => true, :mark_unread => mark_unread) %>
       <% end %>
 
       <% if !comment.previewing %>
