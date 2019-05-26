@@ -1328,4 +1328,6 @@ div.comment_unread span.comment_timeago {
         font-weight: 600;
     }
 
-
+div.comment_unread{
+    background-color: #fee7df7d;
+}
