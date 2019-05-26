@@ -1323,8 +1323,8 @@ div.fieldWithErrors {
 	vertical-align: middle;
 }
 
-div.comment_unread span.comment_timeago {
-        color: red;
+span.comment_timeago {
+        color: #ff4202;
         font-weight: 600;
     }
 
