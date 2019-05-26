@@ -105,6 +105,10 @@ it:
       searchlink: "Ricerca"
       beta-test: "Beta Test"
       invitationlink: "Richiedi un invito"
+      replieslink: "Risposte"
+      newreplieslink:
+        one: "Una nuova risposta"
+        other: "%{count} nuove risposte"
       filterslink: "Filtri"
       newmessagelink:
         one: "Un nuovo messaggio"

@@ -79,6 +79,17 @@ module ApplicationHelper
     }
 
     if @user
+      if (count = @user.unread_replies_count) > 0
+        @right_header_links.merge!({ "/replies" => {
+          :class => [ "new_messages" ],
+          :title => t('.newreplieslink', :count => count) }
+        })
+      else
+        @right_header_links.merge!({
+          "/replies" => { :title => t('.replieslink') }
+        })
+      end
+      
       if (count = @user.unread_message_count) > 0
         @right_header_links.merge!({ "/messages" => {
           :class => [ "new_messages" ],
