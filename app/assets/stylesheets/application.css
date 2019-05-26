@@ -1323,4 +1323,9 @@ div.fieldWithErrors {
 	vertical-align: middle;
 }
 
+span.comment_unread {
+        color: red;
+        font-weight: 600;
+    }
+
 
