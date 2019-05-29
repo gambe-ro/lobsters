@@ -17,11 +17,11 @@ module StoriesHelper
     false
   end
 
-     def is_unread?(comment)
-             if !@user || !@ribbon
-                       return false
-                           end
-
-                  (comment.created_at > @ribbon.updated_at) && (comment.user_id != @user.id)
-                    end
+  def is_unread?(comment)
+    if !@user || !@ribbon
+      return false
+    end
+    
+    (comment.created_at > @ribbon.updated_at) && (comment.user_id != @user.id)
+  end
 end

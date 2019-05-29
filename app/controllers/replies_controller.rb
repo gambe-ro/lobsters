@@ -16,25 +16,25 @@ class RepliesController < ApplicationController
     
     case @filter
     when 'comments'
-      @heading = @title = "Your Comment Replies"
+      @heading = @title = I18n.t('controllers.replies_controller.commentstitle')
       @replies = ReplyingComment
                    .comment_replies_for(@user.id)
                    .offset((@page - 1) * REPLIES_PER_PAGE)
                    .limit(REPLIES_PER_PAGE)
     when 'stories'
-      @heading = @title = "Your Story Replies"
+      @heading = @title = I18n.t('controllers.replies_controller.storiestitle')
       @replies = ReplyingComment
                    .story_replies_for(@user.id)
                    .offset((@page - 1) * REPLIES_PER_PAGE)
                    .limit(REPLIES_PER_PAGE)
     when 'all'
-      @heading = @title = "All Your Replies"
+      @heading = @title = I18n.t('controllers.replies_controller.alltitle')
       @replies = ReplyingComment
                    .for_user(@user.id)
                    .offset((@page - 1) * REPLIES_PER_PAGE)
                    .limit(REPLIES_PER_PAGE)
     else
-      @heading = @title = "Your Unread Replies"
+      @heading = @title = I18n.t('controllers.replies_controller.unreadtitle')
       @replies = ReplyingComment.unread_replies_for(@user.id)
     end
   end
