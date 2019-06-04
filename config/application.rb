@@ -53,7 +53,7 @@ class << Rails.application
   # when true limits the number of invitation sendings to max_invitations_count
   # when false there is no limit on the number of invitation sendings
   def closed_testing?
-    true
+    false
   end
 
   # the maximum number of invitation sendings when closed_testing? is true
