@@ -54,8 +54,6 @@ module ApplicationHelper
 
     @header_links.merge!({ "/search" => { :title => t('.searchlink') } })
 
-    @header_links.merge!({ "/about#betatest" => { :title => t('.beta-test'), :class => ['highlighted'] } })
-
     if !@user
       @header_links.merge!({ "/invitations/request" => { :title => t('.invitationlink'), :class => ['highlighted'] } })
     end
