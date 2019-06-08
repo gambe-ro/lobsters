@@ -70,8 +70,8 @@
         html << " (hotness mod #{t.hotness_mod > 0 ? "+" : ""}#{t.hotness_mod})"
       end
       if t.filtered_count > 0
-        html << " <em>#{t.filtered_count} user" <<
-          (t.filtered_count == 1 ? "" : "s") << " filtering</em>"
+        html << " <em class='filteredby'>filtrato da #{t.filtered_count} " <<
+          (t.filtered_count == 1 ? "utente" : "utenti") << "</em>"
       end
 
       [ "#{t.tag} - #{t.description}", t.tag, { "data-html" => raw(html) } ]},

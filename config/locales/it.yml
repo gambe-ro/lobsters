@@ -88,6 +88,7 @@ it:
       commentmoderated: "Il tuo commento è stato moderato"
       commentmoderatedwhy: "Il tuo commento su [%{title}](%{url}) è stato moderato:\n"
       automatedmessage: "*Questo messaggio è stato inviato automaticamente.*"
+      grantedhat: "Conferito cappello"
     story:
       deletedstory: "articolo rimosso"
       undeletedstory: "articolo ripristinato"
@@ -188,7 +189,7 @@ it:
       link: "Link:"
       linkplaceholder: "membro@progetto.org, o URL della pagina dell'azienda"
       comment: "Commento:"
-      commentplaceholder: "Sarà mostrato solo alla fine del processo di moderazione"
+      commentplaceholder: "Sarà mostrato solo al fine del processo di moderazione"
       requesthatbutton: "Richiedi un cappello"
     create_request:
       submittedhatrequest: "Richiesta di cappello inviata con successo."
@@ -648,6 +649,7 @@ it:
     comments_controller:
       commentstitle: "Commenti più recenti"
       threadstitle: "Le tue discussioni"
+      threadsfortitle: "Discussioni di"
     filters_controller:
       filterstitle: "Filtri"
       flashfilterupdate: "I tuoi filtri sono stati aggiornati."
@@ -655,7 +657,7 @@ it:
       hatstitle: "Cappello"
     home_controller:
       recenttitle: "Articoli recenti"
-      abouttitle: "Descrizione"
+      abouttitle: "Chi siamo"
       chattitle: "Chat"
       privacytitle: "Informativa sulla privacy"
       hiddenstoriestitle: "Articoli nascosti"

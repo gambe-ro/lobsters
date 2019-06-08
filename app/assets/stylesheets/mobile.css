@@ -242,4 +242,8 @@
 		text-align: center;
 		float: none;
 	}
+	
+	em.filteredby {
+		display: none;
+	}
 }

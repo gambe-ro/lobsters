@@ -50,7 +50,7 @@ class Hat < ActiveRecord::Base
     m.created_at = self.created_at
     m.user_id = self.user_id
     m.moderator_user_id = self.granted_by_user_id
-    m.action = "Granted hat \"#{self.hat}\"" + (self.link.present? ?
+    m.action =  I18n.t('models.moderation.grantedhat') + " \"#{self.hat}\"" + (self.link.present? ?
       " (#{self.link})" : "")
     m.save
   end

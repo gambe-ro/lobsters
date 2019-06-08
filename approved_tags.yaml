@@ -78,7 +78,7 @@
 - { tag: "strumenti", description: "Strumenti per lo sviluppo software" }
 - { tag: "swift", description: "Linguaggio di programmazione Swift" }
 - { tag: "testing", description: "Testing di software" }
-- { tag: "trascrizione", description: "Link ad una trascrizione, es. di una conferenza" }
+- { tag: "trascrizione", description: "Link ad una trascrizione, es. di una conferenza", is_media: true }
 - { tag: "unix", description: "Sistemi operativi Unix" }
 - { tag: "vcs", description: "Sistemi di controllo versione" }
 - { tag: "video", description: "Link ad un video", is_media: true }
