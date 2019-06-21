@@ -11,26 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130235553) do
+ActiveRecord::Schema.define(version: 20190620201555) do
 
   create_table "comments", force: :cascade do |t|
-    t.datetime "created_at",                                                                    null: false
+    t.datetime "created_at",                                                                      null: false
     t.datetime "updated_at"
-    t.string   "short_id",           limit: 10,                                 default: "",    null: false
-    t.integer  "story_id",           limit: 4,                                                  null: false
-    t.integer  "user_id",            limit: 4,                                                  null: false
+    t.string   "short_id",           limit: 10,                                   default: "",    null: false
+    t.integer  "story_id",           limit: 4,                                                    null: false
+    t.integer  "user_id",            limit: 4,                                                    null: false
     t.integer  "parent_comment_id",  limit: 4
     t.integer  "thread_id",          limit: 4
-    t.text     "comment",            limit: 16777215,                                           null: false
-    t.integer  "upvotes",            limit: 4,                                  default: 0,     null: false
-    t.integer  "downvotes",          limit: 4,                                  default: 0,     null: false
-    t.decimal  "confidence",                          precision: 20, scale: 19, default: 0.0,   null: false
-    t.text     "markeddown_comment", limit: 16777215
-    t.boolean  "is_deleted",                                                    default: false
-    t.boolean  "is_moderated",                                                  default: false
-    t.boolean  "is_from_email",                                                 default: false
+    t.text     "comment",            limit: 4294967295,                                           null: false
+    t.integer  "upvotes",            limit: 4,                                    default: 0,     null: false
+    t.integer  "downvotes",          limit: 4,                                    default: 0,     null: false
+    t.decimal  "confidence",                            precision: 20, scale: 19, default: 0.0,   null: false
+    t.text     "markeddown_comment", limit: 4294967295
+    t.boolean  "is_deleted",                                                      default: false
+    t.boolean  "is_moderated",                                                    default: false
+    t.boolean  "is_from_email",                                                   default: false
     t.integer  "hat_id",             limit: 4
-    t.boolean  "is_dragon",                                                     default: false
+    t.boolean  "is_dragon",                                                       default: false
   end
 
   add_index "comments", ["confidence"], name: "confidence_idx", using: :btree
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20180130235553) do
     t.integer  "user_id",    limit: 4
     t.string   "hat",        limit: 255
     t.string   "link",       limit: 255
-    t.text     "comment",    limit: 65535
+    t.text     "comment",    limit: 16777215
   end
 
   create_table "hats", force: :cascade do |t|
@@ -66,22 +66,22 @@ ActiveRecord::Schema.define(version: 20180130235553) do
 
   create_table "invitation_requests", force: :cascade do |t|
     t.string   "code",        limit: 255
-    t.boolean  "is_verified",               default: false
+    t.boolean  "is_verified",                  default: false
     t.string   "email",       limit: 255
     t.string   "name",        limit: 255
-    t.text     "memo",        limit: 65535
+    t.text     "memo",        limit: 16777215
     t.string   "ip_address",  limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.string   "email",      limit: 255
     t.string   "code",       limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.text     "memo",       limit: 16777215
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.text     "memo",       limit: 4294967295
   end
 
   create_table "keystores", id: false, force: :cascade do |t|
@@ -95,26 +95,26 @@ ActiveRecord::Schema.define(version: 20180130235553) do
     t.datetime "created_at"
     t.integer  "author_user_id",       limit: 4
     t.integer  "recipient_user_id",    limit: 4
-    t.boolean  "has_been_read",                         default: false
+    t.boolean  "has_been_read",                           default: false
     t.string   "subject",              limit: 100
-    t.text     "body",                 limit: 16777215
+    t.text     "body",                 limit: 4294967295
     t.string   "short_id",             limit: 30
-    t.boolean  "deleted_by_author",                     default: false
-    t.boolean  "deleted_by_recipient",                  default: false
+    t.boolean  "deleted_by_author",                       default: false
+    t.boolean  "deleted_by_recipient",                    default: false
   end
 
   add_index "messages", ["short_id"], name: "random_hash", unique: true, using: :btree
 
   create_table "moderations", force: :cascade do |t|
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
     t.integer  "moderator_user_id",   limit: 4
     t.integer  "story_id",            limit: 4
     t.integer  "comment_id",          limit: 4
     t.integer  "user_id",             limit: 4
-    t.text     "action",              limit: 16777215
-    t.text     "reason",              limit: 16777215
-    t.boolean  "is_from_suggestions",                  default: false
+    t.text     "action",              limit: 4294967295
+    t.text     "reason",              limit: 4294967295
+    t.boolean  "is_from_suggestions",                    default: false
   end
 
   create_table "read_ribbons", force: :cascade do |t|
@@ -131,22 +131,22 @@ ActiveRecord::Schema.define(version: 20180130235553) do
   create_table "stories", force: :cascade do |t|
     t.datetime "created_at"
     t.integer  "user_id",                limit: 4
-    t.string   "url",                    limit: 250,                                default: ""
-    t.string   "title",                  limit: 150,                                default: "",    null: false
-    t.text     "description",            limit: 16777215
-    t.string   "short_id",               limit: 6,                                  default: "",    null: false
-    t.boolean  "is_expired",                                                        default: false, null: false
-    t.integer  "upvotes",                limit: 4,                                  default: 0,     null: false
-    t.integer  "downvotes",              limit: 4,                                  default: 0,     null: false
-    t.boolean  "is_moderated",                                                      default: false, null: false
-    t.decimal  "hotness",                                 precision: 20, scale: 10, default: 0.0,   null: false
-    t.text     "markeddown_description", limit: 16777215
-    t.text     "story_cache",            limit: 16777215
-    t.integer  "comments_count",         limit: 4,                                  default: 0,     null: false
+    t.string   "url",                    limit: 250,                                  default: ""
+    t.string   "title",                  limit: 150,                                  default: "",    null: false
+    t.text     "description",            limit: 4294967295
+    t.string   "short_id",               limit: 6,                                    default: "",    null: false
+    t.boolean  "is_expired",                                                          default: false, null: false
+    t.integer  "upvotes",                limit: 4,                                    default: 0,     null: false
+    t.integer  "downvotes",              limit: 4,                                    default: 0,     null: false
+    t.boolean  "is_moderated",                                                        default: false, null: false
+    t.decimal  "hotness",                                   precision: 20, scale: 10, default: 0.0,   null: false
+    t.text     "markeddown_description", limit: 4294967295
+    t.text     "story_cache",            limit: 4294967295
+    t.integer  "comments_count",         limit: 4,                                    default: 0,     null: false
     t.integer  "merged_story_id",        limit: 4
     t.datetime "unavailable_at"
     t.string   "twitter_id",             limit: 20
-    t.boolean  "user_is_author",                                                    default: false
+    t.boolean  "user_is_author",                                                      default: false
   end
 
   add_index "stories", ["created_at"], name: "index_stories_on_created_at", using: :btree
@@ -201,17 +201,17 @@ ActiveRecord::Schema.define(version: 20180130235553) do
     t.string   "email",                      limit: 100
     t.string   "password_digest",            limit: 75
     t.datetime "created_at"
-    t.boolean  "is_admin",                                    default: false
+    t.boolean  "is_admin",                                      default: false
     t.string   "password_reset_token",       limit: 75
-    t.string   "session_token",              limit: 75,       default: "",    null: false
-    t.text     "about",                      limit: 16777215
+    t.string   "session_token",              limit: 75,         default: "",    null: false
+    t.text     "about",                      limit: 4294967295
     t.integer  "invited_by_user_id",         limit: 4
-    t.boolean  "is_moderator",                                default: false
-    t.boolean  "pushover_mentions",                           default: false
+    t.boolean  "is_moderator",                                  default: false
+    t.boolean  "pushover_mentions",                             default: false
     t.string   "rss_token",                  limit: 75
     t.string   "mailing_list_token",         limit: 75
-    t.integer  "mailing_list_mode",          limit: 4,        default: 0
-    t.integer  "karma",                      limit: 4,        default: 0,     null: false
+    t.integer  "mailing_list_mode",          limit: 4,          default: 0
+    t.integer  "karma",                      limit: 4,          default: 0,     null: false
     t.datetime "banned_at"
     t.integer  "banned_by_user_id",          limit: 4
     t.string   "banned_reason",              limit: 200
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 20180130235553) do
     t.datetime "disabled_invite_at"
     t.integer  "disabled_invite_by_user_id", limit: 4
     t.string   "disabled_invite_reason",     limit: 200
-    t.text     "settings",                   limit: 65535
+    t.text     "settings",                   limit: 16777215
   end
 
   add_index "users", ["mailing_list_mode"], name: "mailing_list_enabled", using: :btree
