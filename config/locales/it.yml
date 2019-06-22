@@ -38,6 +38,7 @@ it:
             attributes:
               title:
                 too_short: "Il titolo è troppo corto"
+                too_long: "Il titolo è troppo lungo"    
         message:
           attributes:
             recipient:
@@ -97,6 +98,7 @@ it:
       changedfromto: "%{story} cambiato da %{stfrom} a %{stto}"
       nonmedia: "Devi inserire un tag diverso da PDF o video"
       alreadysubmitted: "è già stato inserito negli ultimi %{days} giorni"
+      mergeerrorsamestoryid: "Non puoi unire una storia a sé stessa"
     vote:
       offtopicvote: "Fuori tema"
       incorrectvote: "Non corretto"
@@ -543,7 +545,7 @@ it:
       alreadysubmittedflash: "Nota: Questo articolo è gia stato pubblicato %{timeago}, ma può essere ripubblicato"
       previousdiscussion: "Per favore consulta <a href=\"%{storypath}\" target=\"_blank\"> la discussione precedente</a> per questo articolo."
       previousexpireddiscussion: "Per favore consulta prima <a href=\"%{storypath}\" \"target=_blank\">la discussione precedente</a> per questo articolo.  Se il contenuto è cambiato o giustifica una nuova discussione, puoi ripubblicarlo."
-      fetchtitle: "Recuperare il titolo"
+      fetchtitle: "Recupera il titolo"
       url: "URL:"
       title: "Titolo:"
       changetitle: "Gli utenti hanno suggerito di modificare il titolo di questo articolo in:"

@@ -27,7 +27,7 @@ class Story < ActiveRecord::Base
 
   validates_each :merged_story_id do |record,attr,value|
     if value.to_i == record.id
-      record.errors.add(:merge_story_short_id, "id cannot be itself.")
+      record.errors.add(:merge_story_short_id, I18n.t('models.story.mergeerrorsamestoryid'))
     end
   end
 
@@ -75,10 +75,10 @@ class Story < ActiveRecord::Base
           end
         end
       else
-        errors.add(:url, "is not valid")
+        errors.add(:url, "non valido.")
       end
     elsif self.description.to_s.strip == ""
-      errors.add(:description, "must contain text if no URL posted")
+      errors.add(:la_descrizione, "deve essere presente se non è presente un URL.")
     end
 
     if !errors.any? && self.url.blank?
