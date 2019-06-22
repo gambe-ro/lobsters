@@ -74,7 +74,7 @@ class Message < ActiveRecord::Base
       self.recipient_user_id = u.id
       @recipient_username = username
     else
-      errors.add(:recipient_username, "is not a valid user")
+      errors.add(:recipient_username, "non è un nome utente valido")
     end
   end
 

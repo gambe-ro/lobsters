@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
 
   validates_each :username do |record,attr,value|
     if BANNED_USERNAMES.include?(value.to_s.downcase)
-      record.errors.add(attr, "is not permitted")
+      record.errors.add(attr, "non valido")
     end
   end
 
