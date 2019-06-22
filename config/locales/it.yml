@@ -567,7 +567,7 @@ it:
       storyremovedby: "[Articolo rimosso da %{user}]"
       moderator: "il moderatore"
       originalsubmitter: "l'autore originale"
-      authoredby: "pubblicato da"
+      authoredby: "scritto da"
       via: "pubblicato da"
       justnow: "in questo istante"
       edit: "modifica"
