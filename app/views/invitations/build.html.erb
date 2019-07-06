@@ -1,3 +1,11 @@
+<%= content_for(:meta_og) do %>
+    <meta property="og:title" content="Gambe.ro: richiesta inviti"/>
+    <%= tag :meta, property: 'og:image', content: image_url("gambero.png") %>
+    <meta property="og:description" content="Richiedi un invito per Gambe.ro" />
+      
+    <% end %>
+
+
 <div class="box wide">
   <div class="legend">
   <%= t('.buildinvtitle') %>
