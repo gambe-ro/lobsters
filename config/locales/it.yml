@@ -348,6 +348,7 @@ it:
       subjectlabel: "Oggetto"
       privatemessages: "Messaggi privati ricevuti"
       sent: "Inviato"
+      messages_sent: "inviati"
       from: "Da"
       tomsg: "a"
       received: "Ricevuto"
