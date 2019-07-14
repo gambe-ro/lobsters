@@ -23,28 +23,31 @@ file.
   $ cd lobsters
   ```
 
-* Run `docker-build.sh`:
+* Define the following environment variables in the file `.env`:
+  * `RAILS_ENV`: the environment in which Ruby on Rails will run. It must be one of the following: `development`, `test`, `production`.
+  * [`SECRET_KEY_BASE`](https://stackoverflow.com/questions/25426940/what-is-the-use-of-secret-key-base-in-rails-4): a **secret** string used to verify the validity of cookies.
+  * `MYSQL_USER`: the MariaDB username (for the user that gambe.ro will use).
+  * `MYSQL_PASSWORD`: the MariaDB password.
+  * `MYSQL_ROOT_PASSWORD`: the root password for MariaDB (used only for table initialization).
+  * `MYSQL_DATABASE`: the MariaDB database name.
+  * `SMTP_USERNAME`: the username for the SMTP server (whose address is hardcoded in `config/initializers/email.rb`).
+  * `SMTP_PASSWORD`: the password for the SMTP server.
+
+* Apply some manual security tweaks:
+  * If you are **deploying** gambe.ro, edit your `.bashrc` (or the equivalent for your shell) and add the following:
   ```bash
-  $ ./docker-build.sh
+  export DOCKER_CONTENT_TRUST=1
   ```
-  This command builds the Docker image of gambero. This script should be run only the very first time or when there is a change to the Gemfile.
+  then run the next steps in a new shell.
+  * If you are **developing** gambe.ro, remove the check for `DOCKER_CONTENT_TRUST` from `script/docker-host-security.sh`, and remove `read_only: true` from the `app` container in `docker-compose.yml`.
 
-* If needed, create a new database configuration at `/config/database.yml`. Follow the template `/config/database.template.yml`.
-
-* Define the following environment variables:
-  * `RAILS_ENV`: specifies in which environment Ruby on Rails will run. It must be set to one of the following values: `'development'`, `'test'`, `'production'`.
-  * `MYSQL_USER`: specifies user name of MariaDB.
-  * `MYSQL_PASSWORD`: specifies password of MariaDB.
-  * `MYSQL_ROOT_PASSWORD`: specifies root password of MariaDB.
-  * `MYSQL_DATABASE`: specifies database name of MariaDB.
-
-* Run `docker-run.sh`:
+* Run `scripts/docker-run.sh`:
   ```bash
-  $ ./docker-run.sh
+  $ scripts/docker-run.sh
   ```
   This command will provision two containers: one for the Ruby on Rails server and one for the MariaDB database.
 
-* You should now be able to view the website at `172.20.0.2:3000` (you can change this address from the `docker-compose.yml` file). Moreover, you should be able to login with the `test` account (password is `test`).
+* You should now be able to view the website at `172.20.0.2:8080` (you can change this address from the `docker-compose.yml` file). Moreover, you should be able to login with the `test` account (password is `test`).
 
 ## Additional setup steps
 
