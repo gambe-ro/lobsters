@@ -49,6 +49,8 @@ file.
 
 * You should now be able to view the website at `172.20.0.2:8080` (you can change this address from the `docker-compose.yml` file). Moreover, you should be able to login with the `test` account (password is `test`).
 
+When in production, don't forget to copy `maintenance/` somewhere and make Nginx point to it (see `nginx.conf`).
+
 ## Additional setup steps
 
 * Define your site's name and default domain, which are used in various places, in a `config/initializers/production.rb` or similar file:
