@@ -7,7 +7,7 @@ until bundle exec rake db:version; do
 done
 
 # Provision Database.
-db_version=$(bundle exec rake db:version)
+db_version=$(bundle exec rake db:version | grep 'Current version:')
 
 if [ "$db_version" = "Current version: 0" ]; then
   bundle exec rake db:schema:load
