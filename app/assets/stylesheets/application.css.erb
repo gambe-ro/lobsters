@@ -436,10 +436,18 @@ div#footer {
 	margin-top: 1.5em;
 	padding-right: 10px;
 }
+.tema_scuro,
 div#footer a {
 	color: var(--footer-color);
 	text-decoration: none;
 	padding-left: 0.75em;
+}
+.tema_scuro {
+float:right;
+padding-right:10px;
+}
+.tema_scuro input[type="checkbox"]{
+    margin:0px;
 }
 
 
@@ -1428,91 +1436,6 @@ div.comment_unread {
 div.comment_unread span.comment_timeago {
 	color: #ff4202;
 	font-weight: 600;
-}
-
-
-.flipswitch {
-  position: relative;
-  width: 99px;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select: none;
-}
-.flipswitch input[type=checkbox] {
-  display: none;
-}
-
-html body div#wrapper div#inside div.box.wide div.flipswitch label.flipswitch-label{
-float:none;
-width:86px;
-margin-top:40px;
-}
-.flipswitch-label {
-  display: block;
-  overflow: hidden;
-  cursor: pointer;
-  border: 3px solid #949494;
-  border-radius: 16px;
-  float:center;
-}
-.flipswitch-inner {
-  width: 200%;
-  margin-left: -100%;
-  -webkit-transition: margin 0.3s ease-in 0s;
-  -moz-transition: margin 0.3s ease-in 0s;
-  -ms-transition: margin 0.3s ease-in 0s;
-  -o-transition: margin 0.3s ease-in 0s;
-  transition: margin 0.3s ease-in 0s;
-}
-.flipswitch-inner:before, .flipswitch-inner:after {
-  float: left;
-  width: 50%;
-  height: 26px;
-  padding: 0;
-  line-height: 26px;
-  font-size: 15px;
-  color: white;
-  font-family: Trebuchet, Arial, sans-serif;
-  font-weight: bold;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.flipswitch-inner:before {
-  content: "Scuro";
-  padding-left: 13px;
-  background-color: #000000;
-  color: #D0F8DA;
-}
-.flipswitch-inner:after {
-  content: " Chiaro";
-  padding-right: 13px;
-  background-color: #FFFFFF;
-  color: #FF4D02;
-  text-align: right;
-}
-.flipswitch-switch {
-  width: 28px;
-  margin: -1px;
-  background: #FFFFFF;
-  border: 3px solid #949494;
-  border-radius: 16px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 71px;
-  -webkit-transition: all 0.3s ease-in 0s;
-  -moz-transition: all 0.3s ease-in 0s;
-  -ms-transition: all 0.3s ease-in 0s;
-  -o-transition: all 0.3s ease-in 0s;
-  transition: all 0.3s ease-in 0s;
-}
-
-.flipswitch-cb:checked + .flipswitch-label .flipswitch-inner {
-  margin-left: 0;
-}
-.flipswitch-cb:checked + .flipswitch-label .flipswitch-switch {
-  right: 0;
 }
 
 
