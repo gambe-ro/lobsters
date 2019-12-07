@@ -44,6 +44,9 @@
     <script>
       Lobsters.curUser = '<%= @user.id %>';
     </script>
+<% else %>
+ <%= javascript_include_tag "night_mode" %>
+    
   <% end %>
   <%= csrf_meta_tags %>
   <% if @rss_link %>
@@ -101,7 +104,7 @@
       <% end %>
 
       <%= yield %>
-
+    
       <div id="footer">
         <% if lookup_context.template_exists?("footer", "layouts", true) %>
           <%= render :partial => "layouts/footer" %>
@@ -122,6 +125,11 @@
           <a href="https://github.com/gambe-ro/lobsters">Github</a>
           <a href="https://twitter.com/gambe_ro">Twitter</a>
           <a href="https://t.me/gamberofficial">Telegram</a>
+          <span class="tema_scuro">Tema Scuro:
+          <input type="checkbox" name="night_switch" id="fs" class="night_switch" checked>
+                <label class="night_switch_label" for="fs">
+           </label>
+        </span>
         <% end %>
       </div>
       <div class="clear"></div>
