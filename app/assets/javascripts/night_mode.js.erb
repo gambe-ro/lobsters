@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	var night_mode = window.localStorage.getItem("night_mode")
 
 	set_mode(night_mode=="true")
-    fs= document.getElementById("fs")
+    var fs= document.getElementById("fs")
     fs.onchange = function() {
         set_mode(fs.checked)
 	}
