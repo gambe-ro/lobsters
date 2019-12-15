@@ -4,7 +4,7 @@ function set_mode(night_mode)
     mode = night_mode ? 'dark' :'light'
     window.localStorage.setItem("night_mode", night_mode)
     document.documentElement.setAttribute('data-theme', mode)
-    document.getElementById("fs").checked = night_mode
+    document.getElementById("ns").checked = night_mode
 }
 
 
@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	var night_mode = window.localStorage.getItem("night_mode")
 
 	set_mode(night_mode=="true")
-    var fs= document.getElementById("fs")
-    fs.onchange = function() {
-        set_mode(fs.checked)
+    var ns= document.getElementById("ns")
+    ns.onchange = function() {
+        set_mode(ns.checked)
 	}
 
 })
