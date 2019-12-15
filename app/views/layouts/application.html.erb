@@ -44,10 +44,10 @@
     <script>
       Lobsters.curUser = '<%= @user.id %>';
     </script>
-<% else %>
- <%= javascript_include_tag "night_mode" %>
-    
-  <% end %>
+    <%# if the user is not logged, we import only the night mode file. This is imported implicitely when the user is logged %>
+    <% else %>
+         <%= javascript_include_tag "night_mode" %>
+    <% end %>
   <%= csrf_meta_tags %>
   <% if @rss_link %>
     <link rel="alternate" type="application/rss+xml"
@@ -126,8 +126,8 @@
           <a href="https://twitter.com/gambe_ro">Twitter</a>
           <a href="https://t.me/gamberofficial">Telegram</a>
           <span class="tema_scuro">Tema Scuro:
-          <input type="checkbox" name="night_switch" id="fs" class="night_switch" checked>
-                <label class="night_switch_label" for="fs">
+          <input type="checkbox" id="ns" class="night_switch" checked>
+                <label class="night_switch_label" for="ns">
            </label>
         </span>
         <% end %>
