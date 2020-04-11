@@ -13,8 +13,8 @@ if [ "$db_version" = "Current version: 0" ]; then
   bundle exec rake db:schema:load
   bundle exec rake db:migrate
   bundle exec rake db:seed
-  bundle exec rake tags:load_from_yaml
 else
+  bundle exec rake tags:load_from_yaml
   bundle exec rake db:migrate
 fi
 

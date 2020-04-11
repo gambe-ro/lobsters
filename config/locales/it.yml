@@ -717,10 +717,10 @@ it:
   replyat: "Rispondi a "
   # reply at in views/email_reply/reply.text.erb
   emailreplyat: "%{author} ti ha risposto: "
-  emailcontinueto: "Continua la discussione su"
+  emailcontinueto: "Continua la discussione su "
   # reply at in views/email_reply/mention.text.erb
   emailmentionreplyat: "%{author} ti ha citato in un commento:"
-  emailmentioncontinueto: "Continua la discussione su"
+  emailmentioncontinueto: "Continua la discussione su "
   date:
     abbr_day_names:
     - dom

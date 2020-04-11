@@ -1,20 +1,58 @@
+const themes = {
+    LIGHT: 'light',
+    DARK: 'dark'
+};
 
-function set_mode(night_mode)
+function set_mode(theme)
 {
-    mode = night_mode ? 'dark' :'light'
-    window.localStorage.setItem("night_mode", night_mode)
-    document.documentElement.setAttribute('data-theme', mode)
-    document.getElementById("ns").checked = night_mode
+    document.documentElement.setAttribute('data-theme', theme); //Toggle Dark Mode
+    document.getElementById("ns").checked = (theme === themes.DARK); //Set Checkbox with current config
 }
 
+function set_storage_theme(theme)
+{
+    window.localStorage.setItem("night_mode", theme);
+}
 
-document.addEventListener("DOMContentLoaded", function() {
-	var night_mode = window.localStorage.getItem("night_mode")
+function get_storage_theme()
+{
+    let night_mode = window.localStorage.getItem("night_mode");
+    if(night_mode === themes.LIGHT || night_mode === themes.DARK)
+        return night_mode;
+    else
+        return null; //No Theme is saved in Storage
+}
 
-	set_mode(night_mode=="true")
-    var ns= document.getElementById("ns")
-    ns.onchange = function() {
-        set_mode(ns.checked)
+function get_system_theme()
+{
+    if(window.matchMedia) //if matchMedia is Supported
+    {
+        if(window.matchMedia('(prefers-color-scheme: dark)').matches)
+        {
+            return themes.DARK; //System theme is Dark
+        }
+    }
+    return themes.LIGHT; //System theme is Light or cannot be read
+}
+
+function get_mode_from_storage_or_system()
+{
+    let storage_theme = get_storage_theme();
+    return storage_theme ? storage_theme : get_system_theme(); //If no StorageTheme is found use SystemTheme
+}
+
+document.addEventListener("DOMContentLoaded", function()
+{
+    set_mode(get_mode_from_storage_or_system());
+
+    let night_switch = document.getElementById("ns");
+    if(night_switch) {
+        night_switch.onchange = function()
+        {
+            let new_theme = night_switch.checked ? themes.DARK : themes.LIGHT;
+            set_storage_theme(new_theme);
+            set_mode(new_theme);
+        };
 	}
+});
 
-})
