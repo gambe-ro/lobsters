@@ -23,4 +23,4 @@ deployment/docker-host-security.sh
 echo "Rebuilding Docker container if necessary..."
 deployment/docker-build.sh
 echo "Launching docker-compose..."
-docker-compose up "$@" # Passes any additional flags
+docker-compose -f deployment/docker-compose.yml -p ${GAMBERO_DC_NAME:-gambero} up "$@" # Passes any additional flags

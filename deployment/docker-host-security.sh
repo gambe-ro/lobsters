@@ -16,17 +16,20 @@ else
 fi
 
 rm -rfv log
-if [ $(stat -c %a /data/log/) != 777 ]; then
-	echo '/data/log/ should have 777 permissions (chmod -R 777 /data/log/).'
-	exit 2
+echo "GAMBERO_PATH=${GAMBERO_PATH:-/data (default value)}"
+if [ $(stat -c %a "${GAMBERO_PATH:-/data}/log/") != 777 ]; then
+	echo "${GAMBERO_PATH:-/data}/log/ should have 777 permissions (chmod -R 777 ${GAMBERO_PATH:-/data}/log/)."
+	echo "Trying to fix automatically..."
+	chmod -v 777 "${GAMBERO_PATH:-/data}/log/"
 else
-	echo '/data/log/ permissions ok'
+	echo "${GAMBERO_PATH:-/data}/log/ permissions ok"
 fi
-if [ $(stat -c %a /data/sphinx/) != 777 ]; then
-	echo '/data/sphinx/ should have 777 permissions (chmod -R 777 /data/sphinx/).'
-	exit 2
+if [ $(stat -c %a "${GAMBERO_PATH:-/data}/sphinx/") != 777 ]; then
+	echo "${GAMBERO_PATH:-/data}/sphinx/ should have 777 permissions (chmod -R 777 ${GAMBERO_PATH:-/data}/sphinx/)."
+	echo "Trying to fix automatically..."
+	chmod -v 777 "${GAMBERO_PATH:-/data}/sphinx/"
 else
-	echo '/data/sphinx/ permissions ok'
+	echo "${GAMBERO_PATH:-/data}/sphinx/ permissions ok"
 fi
 mkdir -pv tmp/
 chmod -Rv 777 tmp/
