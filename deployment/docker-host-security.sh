@@ -1,7 +1,9 @@
 #!/bin/bash
-set -e # Abort on error
 
-if [ $RAILS_ENV = "production" ]; then
+source deployment/setup-sentry.sh
+eval "$(setup_error_handling)"
+
+if [ "$RAILS_ENV" = "production" ]; then
 	if [ "$DOCKER_CONTENT_TRUST" != "1" ]; then
 		echo '$DOCKER_CONTENT_TRUST should be set to 1.'
 		echo "If you're using a CLI, add 'export DOCKER_CONTENT_TRUST=1' to .bashrc and rerun your command in a new shell."
@@ -31,3 +33,6 @@ chmod -Rv 777 tmp/
 mkdir -pv public/assets/
 chmod -Rv 777 public/assets/
 chmod -v a+rw db/schema.rb
+# Not related to security, but worth putting here. Saves some headaches.
+# https://github.com/instructure/canvas-lms/issues/1221#issuecomment-362690811
+chmod -v a+w Gemfile.lock

@@ -1,16 +1,18 @@
 #!/bin/bash
 
-set -e # Abort on error
+# Load env vars from .env
+set -a
+. .env
+
+source deployment/setup-sentry.sh
+eval "$(setup_error_handling)"
+
+deployment/check-env.sh
 
 if [ ! hash envsubst 2>/dev/null ]; then
 	echo 'envsubst not found; please install GNU gettext.'
 	exit 3
 fi
-
-# Load env vars from .env
-set -a
-. .env
-deployment/check-env.sh
 
 cat config/database.template.yml | envsubst > config/database.yml
 cat config/production.sphinx.template.conf | envsubst > config/production.sphinx.conf

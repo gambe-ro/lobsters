@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -e # Abort on error
+source deployment/setup-sentry.sh
+eval "$(setup_error_handling)"
 
 function check_env_vars () {
   for name; do

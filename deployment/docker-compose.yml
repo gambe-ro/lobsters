@@ -11,6 +11,7 @@ services:
       - SECRET_KEY_BASE
       - SMTP_USERNAME
       - SMTP_PASSWORD
+      - SENTRY_DSN
     # tmpfs's must be explicitly declared, because / is by default read-only (read_only: true).
     tmpfs:
       - /tmp
@@ -44,6 +45,7 @@ services:
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
+      - SENTRY_DSN
     security_opt:
       - no-new-privileges
     networks:
