@@ -1,5 +1,7 @@
 FROM ruby:2.6.1-alpine
 WORKDIR /gambero
+EXPOSE 8080
+
 RUN apk add --update \
   bash \
   build-base \
