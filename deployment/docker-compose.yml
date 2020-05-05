@@ -59,6 +59,29 @@ services:
       retries: 3
       start_period: 30s
 
+  tarsnap:
+    image: tarsnap
+    depends_on:
+      - db
+    tmpfs:
+      - /tmp
+    volumes:
+      - type: bind
+        source: ${GAMBERO_PATH:-/data}/tarsnap.key
+        target: /root/tarsnap.key
+        read_only: true
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - SENTRY_DSN
+    security_opt:
+      - no-new-privileges
+    networks:
+      default:
+        ipv4_address: 172.20.0.4
+
 networks:
   default:
     ipam:

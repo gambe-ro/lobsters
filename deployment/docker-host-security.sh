@@ -31,6 +31,12 @@ if [ $(stat -c %a "${GAMBERO_PATH:-/data}/sphinx/") != 777 ]; then
 else
 	echo "${GAMBERO_PATH:-/data}/sphinx/ permissions ok"
 fi
+if [ ! -f "${GAMBERO_PATH:-/data}/tarsnap.key" ]; then
+	echo "No Tarsnap key present. To create an empty one, run the following:"
+	echo ""
+	echo "    touch ${GAMBERO_PATH:-/data}/tarsnap.key"
+	exit 2
+fi
 mkdir -pv tmp/
 chmod -Rv 777 tmp/
 mkdir -pv public/assets/
