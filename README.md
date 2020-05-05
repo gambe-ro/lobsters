@@ -41,9 +41,9 @@ file.
   then run the next steps in a new shell.
   * If you are **developing** gambe.ro, remove `read_only: true` from the `app` container in `docker-compose.yml`.
 
-* Run `scripts/docker-run.sh`:
+* Run `deployment/docker-run.sh`:
   ```bash
-  $ scripts/docker-run.sh
+  $ deployment/docker-run.sh
   ```
   This command will provision two containers: one for the Ruby on Rails server and one for the MariaDB database.
 

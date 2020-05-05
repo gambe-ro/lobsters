@@ -16,7 +16,7 @@ if [ $RAILS_ENV = "production" ]; then
 	fi
 
 	if ! check_env_vars "RAILS_ENV" "SECRET_KEY_BASE" "MYSQL_ROOT_PASSWORD" "MYSQL_USER" "MYSQL_PASSWORD" "MYSQL_DATABASE" "SMTP_USERNAME" "SMTP_PASSWORD"; then
-		echo 'Some variables are not set in .env, please refer to script/check-env.sh for the list'
+		echo 'Some variables are not set in .env, please refer to deployment/check-env.sh for the list'
 		exit 4
 	fi
 

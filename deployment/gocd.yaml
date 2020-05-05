@@ -27,7 +27,7 @@ pipelines:
             - exec:
                 arguments:
                 - -c
-                - cp -v /vagrant/app.env .env && script/docker-restart.sh -d
+                - cp -v /vagrant/app.env .env && deployment/docker-restart.sh -d
                 command: bash
                 working_directory: gambero
                 run_if: passed
