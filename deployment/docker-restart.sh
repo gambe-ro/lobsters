@@ -14,7 +14,11 @@ if [ ! hash envsubst 2>/dev/null ]; then
 	exit 3
 fi
 
+echo "Database template (config/database.template.yml):"
+cat config/database.template.yml
 cat config/database.template.yml | envsubst > config/database.yml
+echo "Database config (config/database.yml):"
+cat config/database.yml
 cat config/production.sphinx.template.conf | envsubst > config/production.sphinx.conf
 chmod a+w config/production.sphinx.conf
 cat config/secrets.template.yml | envsubst > config/secrets.yml
