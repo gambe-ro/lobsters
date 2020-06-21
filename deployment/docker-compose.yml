@@ -26,7 +26,7 @@ services:
     read_only: true
     networks:
       default:
-        ipv4_address: 172.20.0.2
+        ipv4_address: ${SUBNET:-172.20.0}.2
     healthcheck:
       interval: 30s
       retries: 3
@@ -50,10 +50,10 @@ services:
       - no-new-privileges
     networks:
       default:
-        ipv4_address: 172.20.0.3
+        ipv4_address: ${SUBNET:-172.20.0}.3
     read_only: true
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -u $MYSQL_USER -p$MYSQL_PASSWORD -h 172.20.0.3 || exit 1"]
+      test: ["CMD-SHELL", "mysqladmin ping -u $MYSQL_USER -p$MYSQL_PASSWORD -h ${SUBNET:-172.20.0}.3 || exit 1"]
       interval: 5m
       timeout: 5s
       retries: 3
@@ -80,10 +80,10 @@ services:
       - no-new-privileges
     networks:
       default:
-        ipv4_address: 172.20.0.4
+        ipv4_address: ${SUBNET:-172.20.0}.4
 
 networks:
   default:
     ipam:
       config:
-        - subnet: 172.20.0.0/24
+        - subnet: ${SUBNET:-172.20.0}.0/24
