@@ -1,0 +1,46 @@
+name: Deploy
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ develop ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Build
+      uses: appleboy/ssh-action@master
+      with:
+        host: ded2.denv.it
+        username: vagrant
+        key: ${{ secrets.private_key }}
+        port: 44142
+        script: "cd ~/gambero-staging; git checkout develop; git pull; set -a; . .env; env; deployment/docker-build.sh"
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ded2.denv.it
+        username: vagrant
+        key: ${{ secrets.private_key }}
+        port: 44142
+        script: "cd ~/gambero-staging; git checkout develop; git pull; export DOCKER_CONTENT_TRUST=1; deployment/docker-restart.sh -d"
+    - name: Healthcheck
+      uses: Jtalk/url-health-check-action@v1.3
+      with:
+        url: ${{ secrets.staging_url }}
+        max-attempts: 10
+        retry-delay: 3s
+    - name: Notify
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.telegram_to }}
+        token: ${{ secrets.telegram_token }}
+        message: ✅ Staging deploy (commit ${{ github.sha }})

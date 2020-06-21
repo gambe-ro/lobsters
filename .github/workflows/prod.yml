@@ -4,7 +4,7 @@ name: Deploy
 # events but only for the master branch
 on:
   push:
-    branches: [ develop ]
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -23,7 +23,7 @@ jobs:
         username: vagrant
         key: ${{ secrets.private_key }}
         port: 44142
-        script: "cd ~/gambero; git checkout develop; git pull; set -a; . .env; env; deployment/docker-build.sh"
+        script: "cd ~/gambero-production; git checkout master; git pull; set -a; . .env; env; deployment/docker-build.sh"
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
@@ -31,11 +31,11 @@ jobs:
         username: vagrant
         key: ${{ secrets.private_key }}
         port: 44142
-        script: "cd ~/gambero; git checkout develop; git pull; export DOCKER_CONTENT_TRUST=1; deployment/docker-restart.sh -d"
+        script: "cd ~/gambero-production; git checkout master; git pull; export DOCKER_CONTENT_TRUST=1; deployment/docker-restart.sh -d"
     - name: Healthcheck
       uses: Jtalk/url-health-check-action@v1.3
       with:
-        url: ${{ secrets.staging_url }}
+        url: https://gambe.ro
         max-attempts: 10
         retry-delay: 3s
     - name: Notify
@@ -43,4 +43,4 @@ jobs:
       with:
         to: ${{ secrets.telegram_to }}
         token: ${{ secrets.telegram_token }}
-        message: ✅ Staging deploy (commit ${{ github.sha }})
+        message: ✅ Production deploy (commit ${{ github.sha }})
