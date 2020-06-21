@@ -7,6 +7,7 @@ RUN echo "deb http://pkg.tarsnap.com/deb/$(lsb_release -s -c) ./" | tee -a /etc/
 RUN apt-get update && apt-get install -y --no-install-recommends tarsnap
 
 # https://stackoverflow.com/a/37458519
+COPY deployment/backup.sh /backup.sh
 COPY deployment/tarsnap.cron /etc/cron.d/tarsnap.cron
 RUN chmod 0644 /etc/cron.d/tarsnap.cron
 
